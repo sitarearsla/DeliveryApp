@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Götür</string>
+    <string name="home">Ev</string>
+    <string name="search">Ara</string>
+    <string name="profile">Profil</string>
+    <string name="promotions">Promosyonlar</string>
+    <string name="hello_blank_fragment">"merhaba "</string>
+</resources>
