@@ -6,19 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sitare.goturapp.databinding.FragmentCategoriesBinding
 
 class CategoriesFragment : Fragment() {
     private lateinit var binding: FragmentCategoriesBinding
     private lateinit var categoryList : ArrayList<Category>
+    private lateinit var adapter: CategoryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_categories, container, false)
-        categoryList = ArrayList()
+        var layoutManager = StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL)
+        layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
+        binding.categoriesRecyclerView.layoutManager = layoutManager
 
+
+        categoryList = ArrayList()
         val c1 = Category("Yeni Ürünler", "new_products")
         val c2 = Category("İndirimler", "sale")
         val c3 = Category("Damacana", "water")
@@ -26,7 +32,7 @@ class CategoriesFragment : Fragment() {
         val c5 = Category("Meyve & Sebze", "strawberry")
         val c6 = Category("Fırından", "bread")
         val c7 = Category("Temel Gıda", "pasta")
-        val c8 = Category("Atıştırmalık", "snacks")
+        val c8 = Category("Atıştırmalık", "chocolate")
         val c9 = Category("Dondurma", "ice_cream")
         val c10 = Category("Yiyecek", "sandwich")
         val c11 = Category("Süt & Kahvaltı", "eggs")
@@ -61,6 +67,8 @@ class CategoriesFragment : Fragment() {
         categoryList.add(c19)
         categoryList.add(c20)
 
+        adapter = CategoryAdapter(requireContext(), categoryList)
+        binding.categoriesRecyclerView.adapter = adapter
 
 
         return binding.root
